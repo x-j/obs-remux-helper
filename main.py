@@ -17,17 +17,18 @@ if __name__ == '__main__':
     for file in os.listdir():
         if file.endswith(".mkv") and file.split('.')[0]+".mp4" in os.listdir():
             print("Removing "+file)
-            if straight_delete:
+            # if straight_delete:      <-- I commented it out because it didn't work, lol.
+            if True:
                 os.remove(file)
             else:
-                send2trash.send2trash(file)
+                send2trash.send2trash(file, )
             files_removed +=1
 
     print("Done.", end=' ')
     if files_removed == 0:
         print("No files were ", end='')
     else:
-        print(str(files_removed) + " files were", end='')
+        print(str(files_removed) + " files were", end=' ')
     if straight_delete:
         print("deleted.")
     else:
