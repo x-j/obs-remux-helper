@@ -10,15 +10,15 @@ if __name__ == '__main__':
     os.chdir(vars(args)["target dir"])
     filex = None
 
-    straight_delete: bool = vars(args)["straight_delete"]
+    # straight_delete: bool = vars(args)["straight_delete"]         <-- I commented it out because it didn't work, lol.
+    straight_delete = True
 
     files_removed = 0
     file: str
     for file in os.listdir():
         if file.endswith(".mkv") and file.split('.')[0]+".mp4" in os.listdir():
             print("Removing "+file)
-            # if straight_delete:      <-- I commented it out because it didn't work, lol.
-            if True:
+            if straight_delete:
                 os.remove(file)
             else:
                 send2trash.send2trash(file, )
