@@ -12,13 +12,13 @@ def delete(file, straight_delete=False):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
-        description='Help with remuxing files using OBS by cleaning up already remuxed MKV files.\nAnd also SFK files, for some reason.')
+        description='Help with remuxing files using OBS by cleaning up already remuxed MKV files.\nAnd also SFK and SFL files, for some reason.')
     parser.add_argument('target dir', type=str, help='the directory containing your MKV files')
     parser.add_argument('-sd', '--straight_delete', dest="straight_delete",
                         help="add this flag if you want to directly delete files instead of moving them to trash",
                         action="store_true", required=False)
     parser.add_argument('--skipSFK', dest='skip_sfk',
-                        help="add this flag if for some reason you don't want this script to delete your SFK files.",
+                        help="add this flag if for some reason you don't want this script to delete your SFK and SFL files.",
                         action="store_true", required=False)
 
     args = parser.parse_args()
@@ -36,7 +36,7 @@ if __name__ == '__main__':
         if file.endswith(".mkv") and file.split('.')[0] + ".mp4" in os.listdir():
             delete(file, straight_delete)
             files_deleted += 1
-        if file.endswith(".sfk") and not skip_sfk:
+        if (file.endswith(".sfk") or file.endswith(".sfl")) and not skip_sfk:
             delete(file, straight_delete)
             files_deleted += 1
 
